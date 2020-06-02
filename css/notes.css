@@ -1,0 +1,172 @@
+:root {
+    --sans-font: "Iowan Old Style", -apple-system, BlinkMacSystemFont, helvetica, 'helvetica neue', roboto, 'segoe ui', arial, sans-serif;
+    --mono-font: San Francisco Mono, Monaco,"Consolas","Lucida Console","DejaVu Sans Mono","Bitstream Vera Sans Mono",monospace; 
+    --color-text: #35342f;
+    --color-titre: #9EA1A2;
+    --color-link: #6c757d;
+    --color-bg: #fff;
+
+    /* Color for code blocks in org-mode*/
+    --color-org-builtin: #af5f00;
+    --color-org-string: #878700;
+    --color-org-keyword: #870000 ;
+    --color-org-variable-name: #005f87;
+    --color-org-function-name: #af8700;
+    --color-org-type: #875f87;
+    --color-org-preprocessor: #808080;
+    --color-org-constant: #875f87;
+    --color-org-comment-delimiter: #afafaf;
+    --color-org-comment: #afafaf;
+    --color-org-doc: #afafaf;
+    --color-org-sh-quoted-exec: #875f87;
+}
+@media (prefers-color-scheme: dark) {
+    :root {
+        --color-text: rgba(255,255,255,0.78);
+        --color-bg: rgb(74,74,77);
+        --color-titre:  #cccccc;
+        --color-link: #e9e9e9;
+        --color-h2: #fff;
+
+        --color-org-builtin: #fe8019;
+        --color-org-string: #afaf00;
+        --color-org-keyword: #d75f5f ;
+        --color-org-variable-name: #83a598;
+        --color-org-function-name: #fabd2f;
+        --color-org-type: #d787af;
+        --color-org-preprocessor: #808080;
+        --color-org-constant: #d787af;
+        --color-org-comment-delimiter: #afafaf;
+        --color-org-comment: #afafaf;
+        --color-org-doc: #afafaf;
+        --color-org-sh-quoted-exec: #d787af;
+
+    }
+}
+
+body {
+    font-family: var(--sans-font);
+    max-width: 1500px;
+    background-color: var(--color-bg);
+    color: var(--color-text);
+    margin: auto;
+    font-size: 18px;
+    margin-top: 2rem;
+    padding: 1rem;
+}
+h1.title {
+    text-align: left;
+}
+
+#preamble {
+    max-width: 1000px;
+    width: 67%;
+    margin: auto;
+    text-transform: uppercase;
+    a {
+        color: var(--color-text);
+    }
+}
+#content {
+    margin: auto;
+    max-width: 1000px;
+    width: 67%;
+    padding-top: 2rem;
+    clear: left;
+}
+p {
+    display: block;
+    margin: 1rem 0;
+}
+a {
+    color: var(--color-link);
+    border-width: 0 0 2px 0;
+    border-style: none none solid none;
+    text-decoration: none;
+    margin-bottom: 2px;
+}
+.text-muted {
+    color: var(--color-link);
+    font-style: italic;
+}
+a:hover {
+    color: var(--color-bg);
+    text-decoration: none;
+    background-color: var(--color-link);
+    border-color: var(--color-link);
+}
+pre, code {
+    font-family: var(--mono-font);
+    font-size: 0.95rem;
+}
+pre {
+    box-shadow: none;
+}
+pre.src:before {
+    background-color: var(--color-bg);
+    color: var(--color-link);
+    border: 1px solid #ccc;
+    top: 0.5rem;
+    right: 0.5rem;
+}
+pre.src {
+    overflow-x: auto !important;
+}
+pre span.org-builtin {color: var(--color-org-builtin);}
+pre span.org-string {color: var(--color-org-string);}
+pre span.org-keyword {color: var(--color-org-keyword);}
+pre span.org-variable-name {color: var(--color-org-variable-name);}
+pre span.org-function-name {color: var(--color-org-function-name);}
+pre span.org-type {color: var(--color-org-type);}
+pre span.org-preprocessor {color: var(--color-org-preprocessor);}
+pre span.org-constant {color: var(--color-org-constant);}
+pre span.org-comment-delimiter {color: var(--color-org-comment-delimiter);}
+pre span.org-comment {color: var(--color-org-comment);}
+pre span.org-doc {color: var(--color-org-doc);}
+pre span.org-sh-quoted-exec {color: var(--color-org-sh-quoted-exec);}
+
+.marginnote {
+    float: right;
+    max-width: 200px;
+    width: 20%;
+    margin-right: -25%;
+    font-size: 0.95rem;     
+}
+label.margin-toggle, input.margin-toggle {
+    display: none;
+}
+#liste-notes {
+    line-height: 1.6;
+    width: 100%;
+}
+td + td {
+    padding-left: 1rem;
+}
+
+@media (max-width: 768px) {
+    body {
+        width: 95%;
+        margin: auto;
+        margin-top: 1rem;
+    }
+    #content, #preamble {
+        width: 100%;
+        max-width: 100%;
+    }
+    #content {
+        padding: 0;
+    }
+    .marginnote {
+        display: none;
+    }
+    label.margin-toggle {
+        display: inline;
+    }
+    .margin-toggle:checked + .marginnote {
+        display: block;
+        clear: both;
+        width: 95%;
+        margin: 1rem 2.5%;
+    }
+}
+

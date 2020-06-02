@@ -1,0 +1,109 @@
+#+TITLE: My Post
+#+AUTHOR: Louis de Charsonville (me)
+#+DATE: 2020-05-21
+#+STARTUP: showall
+#+KEYWORDS: awk, shell, bash
+#+DESCRIPTION: A blog post
+#+HTML_HEAD: <link rel="stylesheet" type="text/css" href="css/notes.css" />
+#+OPTIONS: toc:nil author:nil html-postamble:nil
+# Local Variables:
+# org-html-preamble: "<a href='./index.html'>Louis de Charsonville - Notes</a>"
+# End:
+
+@@html:<div class="text-muted">2020-05-21</div>@@
+ 
+
+* Heading 1
+
+
+** Heading 2
+
+
+Some python code:
+
+#+begin_src python
+"""
+Created on Mon Oct 21 22:11:01 2019
+@author: dechars
+
+Description: 
+"""
+
+for i in range(5):
+    print(i)
+    
+import numpy as np
+def ols(x_,y_):
+    x = x_-np.mean(x_)
+    y = y_-np.mean(y_)
+    beta = np.dot(np.linalg.inv(np.dot(np.transpose(x),x)),np.dot(np.transpose(x),y))
+    alpha = np.mean(y)-np.dot(beta,np.mean(x))
+    e = y - np.dot(x,beta)
+    r2 = 1 - np.dot(np.transpose(e),e)/np.dot(np.transpose(y),y)
+    return alpha[0][0], beta[0][0], e, r2[0][0]
+
+# ==============================================================================
+
+import sys
+import numpy as np
+
+def ols(x_,y_):
+    x = x_-np.mean(x_)
+    y = y_-np.mean(y_)
+    beta = np.dot(np.linalg.inv(np.dot(np.transpose(x),x)),np.dot(np.transpose(x),y))
+    e = y - np.dot(x,beta)
+    r2 = 1 - np.dot(np.transpose(e),e)/np.dot(np.transpose(y),y)
+    return r2[0][0]
+
+lines = []
+for line in sys.stdin:
+    lines.append([float(n) for n in line.rstrip().split(' ')])
+nbTestCases = int(lines[0][0])
+for i in range(nbTestCases):
+    r2 = 0
+    y = np.transpose(np.array([lines[2+i*7]]))
+    best = 0
+    for j in range(5):
+        apt_test = np.transpose(np.array([lines[3+j+i*7]]))
+        r2_tmp = ols(apt_test,y)
+        if r2_tmp > r2:
+            r2 = r2_tmp
+            best = j + 1
+    print(best)
+#+end_src
+
+
+That’s the sort of boilerplate introduction that props us countless content farm
+articles and CEO-thought leader LinkedIn posts. Besides the inexorable and
+terrifying advance of climate change, there’s a lot to doubt in that kind of
+futurism.
+
+In particular, computers. Hardware. Ignorant of their teleological duty to
+constantly improve, the computers that we interact with daily have either
+stalled or declined in the past five years.
+
+Take for example the new MacBook Pro, Apple’s 16” top-of-the-line laptop. Three
+of its headline features - a scissor-mechanism keyboard, a physical Escape key,
+and inverted-T arrow keys, are not new. They existed in every MacBook Pro
+produced between 2006 and 2016.
+@@html:<label class="margin-toggle" for="mnote">⊕</label><input class="margin-toggle"
+type="checkbox" id="mnote"></input><span class="marginnote">@@
+Are we really sure about that ?
+@@html:</span>@@
+
+
+
+So the main selling point of this new, $2,399 computer is that it fixes some of
+the unforced errors that Apple made in 2016. You’re paying to get the same sort
+of keyboard, the same escape key, the same arrow keys that you could buy
+in 2015. Apple fans would pay even more to get the MagSafe charger they had back
+then, too, or to not have the TouchBar at all.
+
+
+But the problem runs deeper than that. By the numbers, the clock speed, storage
+capacity, and RAM specifications of MacBooks have stalled since 2013, six years
+ago. Here are the charts to prove it.
+
+
+I’m using the venerable everymac.com for these statistics, and taking the
+highest-spec configuration.

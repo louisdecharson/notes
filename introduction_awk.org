@@ -1,0 +1,27 @@
+#+TITLE: Introduction to AWK
+#+AUTHOR: Louis de Charsonville
+#+DATE: 2020-05-21
+#+STARTUP: showall
+#+KEYWORDS: awk, shell
+#+DESCRIPTION: An introduction to awk
+#+HTML_HEAD: <link rel="stylesheet" type="text/css" href="css/notes.css" />
+#+OPTIONS: toc:nil author:nil html-postamble:nil
+# Local Variables:
+# org-html-preamble: "<a href='./index.html'>Louis de Charsonville - Notes</a>"
+# End:
+
+* What's AWK ?
+
+Awk is powerful command line tool for text processing. It's incredibly useful to
+quickly search through logs or csv files. Because it's part of [[https://en.wikipedia.org/wiki/POSIX][POSIX]] - a family of standards for
+operating systems, awk is installed on almost every /computer/ by default, from a
+UNIX server to your mobile phone.
+
+
+
+
+* See also
+
++ [[https://www.youtube.com/watch?v=43BNFcOdBlY&feature=youtu.be][Awk: Hack the planet [Video]​]]
++ [[https://ferd.ca/awk-in-20-minutes.html][Awk in 20 minutes]]
+
