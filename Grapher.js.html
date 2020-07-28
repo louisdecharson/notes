@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2020-07-28 Tue 20:10 -->
+<!-- 2020-07-29 Wed 01:06 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Grapher.js - Introduction and examples</title>
@@ -244,8 +244,33 @@ for the JavaScript code in this tag.
 </script>
 </head>
 <body>
+<div id="preamble" class="status">
+<a href='./index.html'>Louis de Charsonville - Notes</a>
+</div>
 <div id="content">
 <h1 class="title">Grapher.js - Introduction and examples</h1>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#org11f6cc9">1. Introduction</a>
+<ul>
+<li><a href="#orgd88cf1a">1.1. Installation</a></li>
+<li><a href="#org87372e7">1.2. Create a first plot</a></li>
+</ul>
+</li>
+<li><a href="#org6d2c509">2. Examples of customisation</a>
+<ul>
+<li><a href="#org3af056c">2.1. Add axis titles</a></li>
+<li><a href="#orge1d9bce">2.2. Change the displayed labels</a></li>
+<li><a href="#org299ef37">2.3. Change the domain (or range) of plot's axis</a></li>
+<li><a href="#org99432e4">2.4. Display an horizontal/vertical line</a></li>
+<li><a href="#orgf3aaa88">2.5. Use inherited classes of <code>Grapher</code> to create a reusable graph</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
 <p>
 <div class="text-muted">2020-07-28</div>
 </p>
@@ -254,8 +279,8 @@ for the JavaScript code in this tag.
 <div class="inprogress">Work in progress</div>
 </p>
 
-<div id="outline-container-orgd2d9226" class="outline-2">
-<h2 id="orgd2d9226"><span class="section-number-2">1</span> Introduction</h2>
+<div id="outline-container-org11f6cc9" class="outline-2">
+<h2 id="org11f6cc9"><span class="section-number-2">1</span> Introduction</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 This note's aim is to provide simple examples of how to use of <a href="https://louisdecharson.github.io/grapherjs.html">Grapher.js</a> to
@@ -263,8 +288,8 @@ draw simple plots in Javascript.
 </p>
 </div>
 
-<div id="outline-container-org3ed1f68" class="outline-3">
-<h3 id="org3ed1f68"><span class="section-number-3">1.1</span> Installation</h3>
+<div id="outline-container-orgd88cf1a" class="outline-3">
+<h3 id="orgd88cf1a"><span class="section-number-3">1.1</span> Installation</h3>
 <div class="outline-text-3" id="text-1-1">
 <p>
 To use <code>Grapher.js</code>, you'll need to download D3.js and Grapher.js <label class="margin-toggle" for="mnote">⊕</label><input class="margin-toggle"
@@ -289,8 +314,8 @@ version)
 </div>
 </div>
 
-<div id="outline-container-orgcf9d45b" class="outline-3">
-<h3 id="orgcf9d45b"><span class="section-number-3">1.2</span> Create a first plot</h3>
+<div id="outline-container-org87372e7" class="outline-3">
+<h3 id="org87372e7"><span class="section-number-3">1.2</span> Create a first plot</h3>
 <div class="outline-text-3" id="text-1-2">
 <p>
 To draw a plot, we need two things:
@@ -347,14 +372,15 @@ The data is in wide format:
 
 <col  class="org-left" />
 </colgroup>
-<tbody>
+<thead>
 <tr>
-<td class="org-right">YEAR</td>
-<td class="org-right">FRANKFURT_GERMANY</td>
-<td class="org-left">DIJON_FRANCE</td>
-<td class="org-left">STPETERBURG_RUSSIA</td>
+<th scope="col" class="org-right">YEAR</th>
+<th scope="col" class="org-right">FRANKFURT_GERMANY</th>
+<th scope="col" class="org-left">DIJON_FRANCE</th>
+<th scope="col" class="org-left">STPETERBURG_RUSSIA</th>
 </tr>
-
+</thead>
+<tbody>
 <tr>
 <td class="org-right">1880</td>
 <td class="org-right">10.1931694</td>
@@ -415,12 +441,16 @@ Before using it, we need to transform it to the long format :
 
 <p>
 To so we can use the <code>Grapher</code> function <code>wideToLong</code> which takes as argument:
+<label class="margin-toggle" for="mnote_11">⊕</label><input class="margin-toggle"
+type="checkbox" id="mnote_11"></input><span class="marginnote">Data objects are
+list of dictionary with the same keys. Keys are sometimes referred to as columns
+while each dictionary in the list is a row.</span>
 </p>
 <ul class="org-ul">
-<li>data in wide format</li>
-<li>the array of keys (columns) on which to pivot</li>
-<li>the name of the `field_id` key - in our case <code>CITY</code> -</li>
-<li>the name of the 'field_value' key - on our case <code>TEMPERATURE</code></li>
+<li><code>data</code>, data in wide format.</li>
+<li><code>pivotColumns</code> the array of keys (columns) on which to pivot</li>
+<li><code>keyName</code> the name of the `field_id` key - in our case <code>CITY</code> -</li>
+<li><code>valueName</code>, the name of the 'field_value' key - on our case <code>TEMPERATURE</code></li>
 </ul>
 
 <div class="org-src-container">
@@ -474,10 +504,15 @@ A <code>Grapher</code> object takes two arguments:
 </div>
 </div>
 </div>
+</div>
 
-<div id="outline-container-org68f6520" class="outline-3">
-<h3 id="org68f6520"><span class="section-number-3">1.3</span> Add axis titles</h3>
-<div class="outline-text-3" id="text-1-3">
+<div id="outline-container-org6d2c509" class="outline-2">
+<h2 id="org6d2c509"><span class="section-number-2">2</span> Examples of customisation</h2>
+<div class="outline-text-2" id="text-2">
+</div>
+<div id="outline-container-org3af056c" class="outline-3">
+<h3 id="org3af056c"><span class="section-number-3">2.1</span> Add axis titles</h3>
+<div class="outline-text-3" id="text-2-1">
 <p>
 Axis titles can be added to the plot by passing a <code>"label"</code> option for both of our
 two axis.
@@ -507,9 +542,9 @@ two axis.
 </div>
 </div>
 
-<div id="outline-container-orgf7f6303" class="outline-3">
-<h3 id="orgf7f6303"><span class="section-number-3">1.4</span> Change the displayed labels</h3>
-<div class="outline-text-3" id="text-1-4">
+<div id="outline-container-orge1d9bce" class="outline-3">
+<h3 id="orge1d9bce"><span class="section-number-3">2.2</span> Change the displayed labels</h3>
+<div class="outline-text-3" id="text-2-2">
 <p>
 You can change displayed names in tooltip and legend by using <code>options.category.names</code>. <label class="margin-toggle" for="mnote2">⊕</label><input class="margin-toggle"
 type="checkbox" id="mnote2"></input><span class="marginnote">Note that this
@@ -544,9 +579,51 @@ the parse function to also rename the categories.</span>
 </div>
 </div>
 
-<div id="outline-container-org40d772c" class="outline-3">
-<h3 id="org40d772c"><span class="section-number-3">1.5</span> Display an horizontal/vertical line</h3>
-<div class="outline-text-3" id="text-1-5">
+
+<div id="outline-container-org299ef37" class="outline-3">
+<h3 id="org299ef37"><span class="section-number-3">2.3</span> Change the domain (or range) of plot's axis</h3>
+<div class="outline-text-3" id="text-2-3">
+<p>
+The domain of a plot axis is easily changed by specifying a range inside the
+axis options. For instance, let's have increase the domain of our <code>y-axis</code> to
+<code>[0,14]</code>:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-js">#+begin_src js
+<span class="org-keyword">let</span> <span class="org-variable-name">myPlot</span> = <span class="org-keyword">new</span> <span class="org-type">Grapher</span>(<span class="org-string">'myPlot'</span>,
+                         {<span class="org-string">"x"</span> : {
+                             <span class="org-string">"name"</span>: <span class="org-string">"YEAR"</span>,
+                             <span class="org-string">"tickFormat"</span>: d3.timeFormat(<span class="org-string">'%Y'</span>),
+                             <span class="org-string">"parse"</span>: d =&gt; <span class="org-keyword">new</span> <span class="org-type">Date</span>(d),
+                             <span class="org-string">"scale"</span>: <span class="org-string">"scaleTime"</span>,
+                             <span class="org-string">"label"</span>: <span class="org-string">"Year"</span>
+                         },
+                          <span class="org-string">"y"</span> : {
+                              <span class="org-string">"name"</span>: <span class="org-string">"TEMPERATURE"</span>,
+                              <span class="org-string">"scale"</span>: <span class="org-string">"scaleLinear"</span>,
+                              <span class="org-string">"parse"</span>: d =&gt; +d,
+                              <span class="org-string">"label"</span>: <span class="org-string">"Temperature in C&#176;"</span>,
+                              <span class="org-string">"domain"</span>: [0, 14]                <span class="org-comment-delimiter">// </span><span class="org-comment">&lt;- DOMAIN SPECIFIED</span>
+                          },
+                          <span class="org-string">"type"</span>: <span class="org-string">"line"</span>,
+                          <span class="org-string">"category"</span>: {
+                              <span class="org-string">"name"</span>: <span class="org-string">"CITY"</span>,
+                              <span class="org-string">"names"</span>: {<span class="org-string">"FRANKFURT_GERMANY"</span>: <span class="org-string">"Frankfurt (Germany)"</span>,
+                                        <span class="org-string">"DIJON_FRANCE"</span>: <span class="org-string">"Dijon (France)"</span>,
+                                        <span class="org-string">"STPETERBURG_RUSSIA"</span>: <span class="org-string">"St. Peterburg (Russia)"</span>}
+                          }});
+</pre>
+</div>
+<p>
+#+end_src
+</p>
+</div>
+</div>
+
+<div id="outline-container-org99432e4" class="outline-3">
+<h3 id="org99432e4"><span class="section-number-3">2.4</span> Display an horizontal/vertical line</h3>
+<div class="outline-text-3" id="text-2-4">
 <p>
 Let's compute the average temperatures for each of the locations and add them as
 horizontal lines to the graph.
@@ -593,16 +670,142 @@ Example:
                          });
 </pre>
 </div>
+
+<p>
+We can customize our grid lines so that the :
+</p>
+<ol class="org-ol">
+<li>the horizontal lines are placed on top of the other plot elements (rather than behind)</li>
+<li>the average line has the same color as the main line</li>
+<li>the label is placed at the end rather than at the beginning</li>
+</ol>
+
+<p>
+To achieve our first custom option - draw the horizontal line on top of the
+other plot elements - we need to add <code>"onTop:true"</code> for each of our
+lines. This is easily done with:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-js"><span class="org-keyword">let</span> <span class="org-variable-name">temperature_averages</span> = d3.nest()
+        .key(d =&gt; d[<span class="org-string">'CITY'</span>])
+        .rollup( d =&gt; d3.mean(d, v =&gt; v[<span class="org-string">'TEMPERATURE'</span>]))
+        .entries(temperatureData.filter(d =&gt; d[<span class="org-string">'TEMPERATURE'</span>] &gt; 0))
+        .map(d =&gt; ({<span class="org-string">"y"</span>: d.value, <span class="org-string">"label"</span>: d.key, <span class="org-string">"onTop"</span>: <span class="org-constant">true</span>}));
+</pre>
+</div>
+
+<p>
+For the second, to have the same color for the average line and the 'main'
+line. We can build on the fact that the <code>Grapher</code> object <code>myPlot</code> exposes a <code>color()</code>
+function that returns the html color for each of the categories. 
+</p>
+<div class="org-src-container">
+<pre class="src src-js">&gt; console.log(myPlot.color(<span class="org-string">"DIJON_FRANCE"</span>))
+&lt; <span class="org-string">"#9a59b5"</span>
+</pre>
+</div>
+
+<p>
+For each of the lines, we map the label with its color using the <code>color()</code>
+function and the 'color' options for the grid lines.
+</p>
+<div class="org-src-container">
+<pre class="src src-js"><span class="org-keyword">let</span> <span class="org-variable-name">temperature_averages</span> = d3.nest()
+        .key(d =&gt; d[<span class="org-string">'CITY'</span>])
+        .rollup( d =&gt; d3.mean(d, v =&gt; v[<span class="org-string">'TEMPERATURE'</span>]))
+        .entries(temperatureData.filter(d =&gt; d[<span class="org-string">'TEMPERATURE'</span>] &gt; 0))
+        .map(d =&gt; ({<span class="org-string">"y"</span>: d.value, <span class="org-string">"label"</span>: d.key, <span class="org-string">"onTop"</span>: <span class="org-constant">true</span>, <span class="org-string">"color"</span>: myPlot.color(d.key)}));
+</pre>
+</div>
+
+<p>
+For the third - placing the label in the end of the horizontal line -, there are two options :
+</p>
+<ul class="org-ul">
+<li>Using <code>position</code> which can be set to <code>start</code>, <code>middle</code> or <code>end</code>.</li>
+<li>Using <code>x</code> (the x-axis position of the label's anchor) and <code>textAnchor</code> (relative
+to the text, should the anchor be placed at the beginning, the middle or the
+end) which allows to precisely set where the label should be
+displayed.</li>
+</ul>
+
+<p>
+The first option yields :
+</p>
+<div class="org-src-container">
+<pre class="src src-js"><span class="org-keyword">let</span> <span class="org-variable-name">temperature_averages</span> = d3.nest()
+        .key(d =&gt; d[<span class="org-string">'CITY'</span>])
+        .rollup( d =&gt; d3.mean(d, v =&gt; v[<span class="org-string">'TEMPERATURE'</span>]))
+        .entries(temperatureData.filter(d =&gt; d[<span class="org-string">'TEMPERATURE'</span>] &gt; 0))
+        .map(d =&gt; ({<span class="org-string">"y"</span>: d.value, <span class="org-string">"label"</span>: d.key, 
+                    <span class="org-string">"onTop"</span>: <span class="org-constant">true</span>, <span class="org-string">"color"</span>: myPlot.color(d.key),
+                    <span class="org-string">"position"</span>: <span class="org-string">"end"</span>}));
+</pre>
+</div>
+<p>
+For the second option, we need to choose a date on which to position the
+label. Let's pick 1990:
+</p>
+<div class="org-src-container">
+<pre class="src src-js"><span class="org-keyword">let</span> <span class="org-variable-name">temperature_averages</span> = d3.nest()
+        .key(d =&gt; d[<span class="org-string">'CITY'</span>])
+        .rollup( d =&gt; d3.mean(d, v =&gt; v[<span class="org-string">'TEMPERATURE'</span>]))
+        .entries(temperatureData.filter(d =&gt; d[<span class="org-string">'TEMPERATURE'</span>] &gt; 0))
+        .map(d =&gt; ({<span class="org-string">"y"</span>: d.value, <span class="org-string">"label"</span>: d.key, 
+                    <span class="org-string">"onTop"</span>: <span class="org-constant">true</span>, <span class="org-string">"color"</span>: myPlot.color(d.key),
+                    <span class="org-string">"x"</span>: <span class="org-keyword">new</span> <span class="org-type">Date</span>(<span class="org-string">'1990'</span>), <span class="org-string">"textAnchor"</span>: <span class="org-string">"start"</span>}));
+</pre>
+</div>
 </div>
 </div>
 
-<div id="outline-container-org1ad3bd3" class="outline-3">
-<h3 id="org1ad3bd3"><span class="section-number-3">1.6</span> Use inherited classes of <code>Grapher</code> to create a reusable graph</h3>
-</div>
-</div>
 
-<div id="outline-container-orge677f8e" class="outline-2">
-<h2 id="orge677f8e"><span class="section-number-2">2</span> Sparklines</h2>
+<div id="outline-container-orgf3aaa88" class="outline-3">
+<h3 id="orgf3aaa88"><span class="section-number-3">2.5</span> Use inherited classes of <code>Grapher</code> to create a reusable graph</h3>
+<div class="outline-text-3" id="text-2-5">
+<p>
+When you deal with the same dataset and create multiple version of the same
+graph, it's often a good idea to create a class inherited from Grapher with all
+the default config.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-js"><span class="org-keyword">class</span> TemperatureGraph <span class="org-keyword">extends</span> Grapher {
+    constructor(id,
+                options={})
+    {
+        <span class="org-keyword">super</span>(id, options);
+        <span class="org-constant">this</span>.options = {
+            <span class="org-string">"x"</span> : {
+                <span class="org-string">"name"</span>: <span class="org-string">"YEAR"</span>,
+                <span class="org-string">"tickFormat"</span>: d3.timeFormat(<span class="org-string">'%Y'</span>),
+                <span class="org-string">"parse"</span>: d =&gt; <span class="org-keyword">new</span> <span class="org-type">Date</span>(d),
+                <span class="org-string">"scale"</span>: <span class="org-string">"scaleTime"</span>,
+                <span class="org-string">"label"</span>: <span class="org-string">"Year"</span>
+            },
+            <span class="org-string">"y"</span> : {
+                <span class="org-string">"name"</span>: <span class="org-string">"TEMPERATURE"</span>,
+                <span class="org-string">"scale"</span>: <span class="org-string">"scaleLinear"</span>,
+                <span class="org-string">"parse"</span>: d =&gt; +d,
+                <span class="org-string">"label"</span>: <span class="org-string">"Temperature in C&#176;"</span>,
+                <span class="org-string">"domain"</span>: [0, 14]
+            },
+            <span class="org-string">"type"</span>: <span class="org-string">"line"</span>,
+            <span class="org-string">"category"</span>: {
+                <span class="org-string">"name"</span>: <span class="org-string">"CITY"</span>,
+                <span class="org-string">"names"</span>: {<span class="org-string">"FRANKFURT_GERMANY"</span>: <span class="org-string">"Frankfurt (Germany)"</span>,
+                          <span class="org-string">"DIJON_FRANCE"</span>: <span class="org-string">"Dijon (France)"</span>,
+                          <span class="org-string">"STPETERBURG_RUSSIA"</span>: <span class="org-string">"St. Peterburg (Russia)"</span>}
+            }
+        };
+    }
+}
+<span class="org-keyword">let</span> <span class="org-variable-name">myPlot</span> = <span class="org-keyword">new</span> <span class="org-type">TemperatureGraph</span>();
+</pre>
+</div>
+</div>
+</div>
 </div>
 </div>
 </body>
